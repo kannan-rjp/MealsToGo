@@ -14,7 +14,7 @@ const SearchBar = () => {
                 <View style={{ justifyContent: 'center', alignItems: 'center', width: 40}}>
                     <Image resizeMode='center' style={styles.image} source={searchImg} />
                 </View>
-                <TextInput o style={styles.input} />
+                <TextInput style={styles.input} />
             </View>
         </View>
     );
