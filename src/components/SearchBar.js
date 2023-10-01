@@ -1,20 +1,22 @@
+import { useState, useEffect } from 'react';
 import {
     View,
     StyleSheet,
     Text,
     TextInput,
-    Image
+    Image,
 } from 'react-native';
 
 const searchImg = require('../../assets/images/search.png')
-const SearchBar = () => {
+const SearchBar = ({value, handleChange}) => {
+    const [searchval, setSearchval] = useState('');
     return (
         <View style={styles.container}>
             <View style={styles.searchCon}>
                 <View style={{ justifyContent: 'center', alignItems: 'center', width: 40}}>
                     <Image resizeMode='center' style={styles.image} source={searchImg} />
                 </View>
-                <TextInput style={styles.input} />
+                <TextInput value={value} onChangeText={handleChange} style={styles.input} />
             </View>
         </View>
     );
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
     container: {
         height: 80,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     searchCon: {
         width: '90%',
@@ -33,7 +35,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         borderWidth: 1,
-        borderRadius: 4
+        borderRadius: 4,
+        elevation: 6
     },
     image: {
         height: 20,
