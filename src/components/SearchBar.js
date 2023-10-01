@@ -36,13 +36,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderWidth: 1,
         borderRadius: 4,
-        elevation: 6
+        elevation: 2,
     },
     image: {
         height: 20,
-        width: 20
+        width: 20,
     },
     input: {
         flex: 1,
+        color: 'gray'
     }
 })
