@@ -1,23 +1,28 @@
 import {
-    View, 
+    View,
     Image,
     StyleSheet,
     Text,
+    TouchableOpacity,
 } from 'react-native'
 
 const RestaurentInfo = (props) => {
-    const { address, name, photo, isOpened } = props.restaurentCol[0];
-    return(
+    const {restaurentCollection, bottomGap} = props;
+    const { address, name, photo, isOpened } = restaurentCollection;
+    const imageBottom = { marginBottom: Number(bottomGap)}
+    return (
         <>
-        <View style={styles.imageContainer}>
-            <View>
-                <Image source={photo} style={styles.restImages} />
-            </View>
-            <View style={styles.textContainer}>
-                <Text style={styles.headText}>{name}</Text>
-                <Text style={styles.subText}>{address}</Text>
-            </View>
-        </View>
+            <TouchableOpacity onPress={()=>{console.log('Yeah')}}>
+                <View style={[styles.imageContainer, imageBottom]}>
+                    <View>
+                        <Image source={photo} style={styles.restImages} />
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.headText}>{name}</Text>
+                        <Text style={styles.subText}>{address}</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
         </>
     );
 }
@@ -27,8 +32,7 @@ const styles = StyleSheet.create({
     imageContainer: {
         borderRadius: 20,
         overflow: 'hidden',
-        elevation: 3
-        
+        elevation: 2,
     },
     restImages: {
         height: 200,

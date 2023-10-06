@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux'
 import {
     Text,
     View, StyleSheet,
@@ -8,30 +9,40 @@ import {
     SafeAreaView,
     Platform,
     StatusBar,
-    TextInput
+    TextInput,
+    FlatList,
+    ScrollView
 } from 'react-native'
 import { restaurentData } from '../../../config/data'
 import SearchBar from "../../../components/SearchBar";
 import RestaurentInfo from "../components/RestaurentInfo";
 
-const RestaurentEntry = () => {
+const RestaurentEntry = (props) => {
     const [value, setValue] = useState('');
     const handleChange = (text) => {
-        console.log('Yeah',text)
+        console.log('Yeah', text)
         setValue(text);
     }
+    // console.log('This is my state', props.restaurentReducer)
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.searchContainer}>
-                <SearchBar value={value} handleChange={handleChange} />
-            </View>
-            <View style={styles.listContainer}>
-                <RestaurentInfo restaurentCol={restaurentData} />
-            </View>
+            <ScrollView>
+                <View style={styles.searchContainer}>
+                    <SearchBar value={value} handleChange={handleChange} />
+                </View>
+                <View style={styles.listContainer}>
+                    {restaurentData && restaurentData.map((data, index) => {
+                        return (<RestaurentInfo bottomGap={10} key={index} restaurentCollection={data} />);
+                    })}
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
-export default RestaurentEntry
+const mapStateToProps = state => ({
+    restaurentReducer: state
+}) 
+export default connect(mapStateToProps)(RestaurentEntry)
 
 const styles = StyleSheet.create({
     container: {
