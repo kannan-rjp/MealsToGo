@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import { restaurentReducer } from './restaurentReducer'
+import { restaurentReducer, addToCartReducer } from './restaurentReducer'
 
 const rootReducers = combineReducers({
-    restaurentReducer
+    restaurentReducer,
 });
 export default rootReducers;

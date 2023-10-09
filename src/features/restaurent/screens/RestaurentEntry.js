@@ -23,7 +23,7 @@ const RestaurentEntry = (props) => {
         console.log('Yeah', text)
         setValue(text);
     }
-    // console.log('This is my state', props.restaurentReducer)
+    console.log('This is my state', props.restaurentReducer)
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
@@ -39,8 +39,9 @@ const RestaurentEntry = (props) => {
         </SafeAreaView>
     );
 }
+
 const mapStateToProps = state => ({
-    restaurentReducer: state
+    restaurentReducer: state.restaurentReducer
 }) 
 export default connect(mapStateToProps)(RestaurentEntry)
 

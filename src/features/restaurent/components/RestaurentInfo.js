@@ -5,14 +5,16 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native'
-
+import { connect } from 'react-redux'
+import { addToDo } from '../actionsCreator'
 const RestaurentInfo = (props) => {
     const {restaurentCollection, bottomGap} = props;
     const { address, name, photo, isOpened } = restaurentCollection;
     const imageBottom = { marginBottom: Number(bottomGap)}
+    console.log('props list', props)
     return (
         <>
-            <TouchableOpacity onPress={()=>{console.log('Yeah')}}>
+            <TouchableOpacity onPress={()=>props.addToCart({name: 'Kannan', age: 23})}>
                 <View style={[styles.imageContainer, imageBottom]}>
                     <View>
                         <Image source={photo} style={styles.restImages} />
@@ -26,7 +28,11 @@ const RestaurentInfo = (props) => {
         </>
     );
 }
-export default RestaurentInfo;
+
+const mapDispatchToProps = (dispatch) => ({
+    addToCart: (data) => dispatch(addToDo(data))
+})
+export default connect(null, mapDispatchToProps)(RestaurentInfo);
 
 const styles = StyleSheet.create({
     imageContainer: {
